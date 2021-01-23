@@ -8,7 +8,7 @@ do {
     }
 } while (a > b)
 
-for (var i = a; i < b; i++) {
+for (var i = a; i <= b; i++) {
     if (i % 2 === 0) {
         console.log(i ** 2, i + '^2');
     }
