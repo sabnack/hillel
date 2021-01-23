@@ -19,8 +19,7 @@ let isPrime = true;
 
 if (number === 0 || number === 1) {
     number === 0 ? console.log(number + ' is not a natural number') : console.log(number + ' is multiplicative unit');
-}
-else {
+} else {
     for (var i = 2; i < number; i++) {
         if (number % i === 0) {
             isPrime = false;
