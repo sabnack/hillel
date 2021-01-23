@@ -1,4 +1,5 @@
 let parsedNumber;
+
 do 
 {
     let number = prompt('Enter a number :', '');  
