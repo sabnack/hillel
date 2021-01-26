@@ -5,7 +5,7 @@ var min = -220,
 
 for (var i = 0; i < arr.length; i++) {
     arr[i] = Math.round(Math.random() * (max - min) + min);
-    if (arr[i] > -100 && arr[i] < 100) {
+    if ((arr[i] > -100 && arr[i] < -9) || (arr[i] > 9 && arr[i] < 100)) {
         console.log(arr[i] + ' ');
     }
 }
