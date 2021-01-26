@@ -27,11 +27,7 @@ for (var i = 1; i < arr.length; i++) {
     }
 }
 
-var result = [];
-
-if (minIndex - maxIndex > 1 || maxIndex - minIndex > 1) {
-    result = minIndex < maxIndex ? arr.slice(minIndex + 1, maxIndex) : arr.slice(maxIndex + 1, minIndex);
-}
+var result = minIndex < maxIndex ? arr.slice(minIndex + 1, maxIndex) : arr.slice(maxIndex + 1, minIndex);
 
 console.log(arr);
 console.log(min + ' ' + minIndex + ' ' + max + ' ' + maxIndex);
