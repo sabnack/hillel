@@ -63,8 +63,10 @@ console.log('MaxSum Column = ' + maxSum + ' index = ', maxSumIndex);
 // 3 элемент поменять с 4
 // 5 элемент поменять с 6 и тд
 // Если массив непарный - последний элемент не трогать.
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 for (var i = 0; i < arr.length - 1; i += 2) {
-    arr.splice(i + 1, 0, arr.splice(i, 1)[0]);
+    var tmp = arr[i];
+    arr[i] = arr[i + 1];
+    arr[i + 1] = tmp;
 }
 console.log(arr);
