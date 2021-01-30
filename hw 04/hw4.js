@@ -70,3 +70,24 @@ for (var i = 0; i < arr.length - 1; i += 2) {
     arr[i + 1] = tmp;
 }
 console.log(arr);
+
+//Реализовать скрипт который получает номер n, и возвращает число Фибоначчи по этому номеру.
+var fibonacci = [0, 1],
+    n = 10,
+    F;
+for (var i = 2; i <= n; i++) {
+    fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+}
+F = fibonacci[n];
+console.log(fibonacci);
+console.log(F);
+// или так
+
+var x = 1,
+    F = 0;
+for (var i = 0; i < n; i++) {
+    x += F;
+    F = x - F;
+}
+console.log(F);
+
