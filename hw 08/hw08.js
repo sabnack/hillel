@@ -70,7 +70,7 @@ var data = {
 }
 
 function addRecord() {
-    var flag = !(typeof (arguments[arguments.length - 1]) === "object");
+    var flag = !(typeof arguments[arguments.length - 1] === "object");
     for (var i = 0; i < arguments.length; i++) {
         for (var key in arguments[i]) {
             if ((this.hasOwnProperty(key) && !flag) || !this.hasOwnProperty(key)) {               
