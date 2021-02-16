@@ -70,7 +70,7 @@ var data = {
 }
 
 function addRecord() {
-    var flag = !(typeof arguments[arguments.length - 1] === "object");
+    var flag = (typeof arguments[arguments.length - 1] === "boolean")? arguments[arguments.length - 1] : false;
     for (var i = 0; i < arguments.length; i++) {
         for (var key in arguments[i]) {
             if ((this.hasOwnProperty(key) && !flag) || !this.hasOwnProperty(key)) {               
@@ -83,5 +83,3 @@ function addRecord() {
 data.addRecord({ x: 10 }, { y: 20 }, { z: 30, x: 50 }, true);
 console.log(data);
 console.log("---------------");
-
-
