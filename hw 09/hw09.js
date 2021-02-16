@@ -30,7 +30,6 @@ console.log("Factorial = ", factorial(20));
 
 var arr = new Array(new Array(4), new Array(3), new Array(new Array(new Array(2), new Array(4)), new Array(4)));
 
-
 function fill(arr) {
     for (var i = 0; i < arr.length; i++) {
         Array.isArray(arr[i]) ? fillSubArray(arr[i]) : arr[i] = rand();
@@ -58,4 +57,3 @@ function fillRecursive(arr) {
     }
 }
 console.log(arr);
-
