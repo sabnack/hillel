@@ -99,3 +99,6 @@ class AppendToFileNameOptions {
     public string Suffix { get; set; } 
     [Option("source", HelpText="The path of a file to rename")] 
     public string FilePath { get; set; } }
+
+
+    msiexec /X{E1E81B42-A7B9-4799-9E62-84E032E9BC57} /quiet /qn /log "C:\ProgramData\SimpleRFID ZPL Print Client (DEV)\UpdateRunLog.log" TIMEOUT /T 20 /NOBREAK
