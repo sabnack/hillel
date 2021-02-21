@@ -102,3 +102,37 @@ class AppendToFileNameOptions {
 
 
     msiexec /X{E1E81B42-A7B9-4799-9E62-84E032E9BC57} /quiet /qn /log "C:\ProgramData\SimpleRFID ZPL Print Client (DEV)\UpdateRunLog.log" TIMEOUT /T 20 /NOBREAK
+
+
+				connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;"
+				"data source=.;initial catalog=simplerfid-main;integrated security=true;MultipleActiveResultSets=True;App=EntityFramework;Connect Timeout=120&quot;"
+
+
+				// connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;
+				// data source=.;initial catalog=simplerfid-main;integrated security=true;MultipleActiveResultSets=True;App=EntityFramework;Connect Timeout=120&quot;"
+
+				connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;"
+				"server=.database=simplerfid-main;Integrated Security=true&quot;"
+
+					<add name="AndrusLogisticsEntities"
+	     connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=simplerfid-main;integrated security=true;MultipleActiveResultSets=True;App=EntityFramework;Connect Timeout=120&quot;"
+	     providerName="System.Data.EntityClient" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+	<log4net>
+		<appender name="DatabaseAppender" xdt:Locator="Match(name)">
+			<connectionString value="data source=.;initial catalog=simplerfid-main;integrated security=true;Connect Timeout=120"
+			                  name="log4netConnectionString" xdt:Transform="Replace" xdt:Locator="Match(name)" />
+		</appender>
+	</log4net>
+
+
+	<connectionStrings>
+		<add name="AndrusLogisticsEntities"
+			connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=simplerfid-main;integrated security=true;MultipleActiveResultSets=True;App=EntityFramework;Connect Timeout=120&quot;"
+			providerName="System.Data.EntityClient"/>
+	</connectionStrings>
+
+	<connectionStrings>
+		<add name="AndrusLogisticsEntities"
+		connectionString="metadata=res://*/Logistics.csdl|res://*/Logistics.ssdl|res://*/Logistics.msl;provider=System.Data.SqlClient;provider connection string=&quot;server=.database=simplerfid-main;Integrated Security=true&quot;"
+		providerName="System.Data.EntityClient"/>
+  	</connectionStrings>
