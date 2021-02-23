@@ -32,6 +32,6 @@ func.apply(user, ['Петров', 'Алексеевич']);
 // а на выходе получим переобразованый массив: [1 ,2, 3, 3.1, 4, 5, 6, 7, 8, 9, 10, 15]
 arr = [[1, 2, 3, [3.1]], 4, [5, 6, [7, 8, [9, 10, [11, 12, 13, 14], 15]]]];
 function converter(arr) {
-    return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(converter(val)) : acc.concat(val), []);
+    return arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? converter(val) : val), []);
 }
 console.log(converter(arr));
