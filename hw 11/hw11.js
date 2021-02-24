@@ -9,9 +9,7 @@ function greeting() {
     alert(greetingMessage + this.value);
 }
 
-var x = 0;
-
-setTimeout(greeting.bind(input), 3000);
+setInterval(greeting.bind(input), 5000);
 
 // Написать методы push, join, reverse самостоятельно. Их функциональность должна соответствовать стандартным методам массивов.
 // list.myPush(); list.myJoin(); list.myReverse();
