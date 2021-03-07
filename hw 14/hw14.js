@@ -9,51 +9,48 @@ this.obj = {
     Y: 3,
     sign: "/"
 }
-class SuprMath {
+class SuperMath {
     constructor() {
         this.signs = ['+', '-', '/', '*', '%'];
         this.obj = {}
     }
-    check(obj) {
-        if (confirm(`${obj.X} ${obj.sign} ${obj.Y}?`)) {
-            switch (obj.sign) {
-                case '+':
-                    alert(obj.X + obj.Y);
-                    break;
-                case '-':
-                    alert(obj.X - obj.Y);
-                    break;
-                case '/':
-                    if (obj.Y === 0) {
-                        alert('Делить на ноль нельзя!');
-                    } else {
-                        alert(obj.X / obj.Y);
-                    }
-                    break;
-                case '*':
-                    alert(obj.X * obj.Y);
-                    break;
-                case '%':
-                    alert(obj.X % obj.Y);
-                    break;
-            }
-        }
-        else {
-            this.input()
-            this.check(this.obj)
+}
+
+SuperMath.prototype.input = function(){
+    this.obj.X = +prompt('Введите число X: ',0);
+    this.obj.Y = +prompt('Введите число Y: ',0);
+    let sign;
+    do {
+        sign = prompt('Введите знак ');
+    } while (sign.length != 1 || this.signs.indexOf(sign) == -1)
+    this.obj.sign = sign;
+}
+
+SuperMath.prototype.check = function(obj){
+    if (confirm(`${obj.X} ${obj.sign} ${obj.Y}?`)) {
+        switch (obj.sign) {
+            case '+':
+                return obj.X + obj.Y;
+            case '-':
+                return obj.X - obj.Y;
+            case '/':
+                if (obj.Y === 0) {
+                    alert('Делить на ноль нельзя!');
+                    return undefined;
+                } else {
+                    return (obj.X / obj.Y);
+                }
+            case '*':
+                return (obj.X * obj.Y);
+            case '%':
+                return (obj.X % obj.Y);
         }
     }
-    input() {
-        this.obj.X = +prompt('Введите число X: ',0);
-        this.obj.Y = +prompt('Введите число Y: ',0);
-        let sign;
-        do {
-            sign = prompt('Введите знак ');
-        } while (sign.length != 1 || this.signs.indexOf(sign) == -1)
-        this.obj.sign = sign;
-        console.log(obj);        
+    else {
+        this.input()
+        return this.check(this.obj);
     }
 }
 
-let p = new SuprMath();
-p.check(obj);
+let p = new SuperMath();
+alert(p.check(obj));
