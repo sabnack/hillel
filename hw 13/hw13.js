@@ -28,25 +28,32 @@ let data = [{"name": "Carolus Haverbeke", "sex": "m", "born": 1832, "died": 1905
 String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-const getTHead = el => { 
-    let res = '';
-    for(const key in el){
-        res += `<th>${key.capitalizeFirstLetter()}</th>`     
-    }
-    return res;
+
+function getTagTH(el){
+    return `<th>${el.capitalizeFirstLetter()}</th>`;
 }
-const getTableData = el => {
-    let res = '';
-    for(const key in el){
-        res += `<td>${el[key]}</td>`
-    }
-    return res;
+
+function getTagTD(el){
+    return `<td>${el}</td>`;
 }
-const getTableRow = el => `<tr> ${getTableData(el)}</tr>`;
-const markup = `
-<table style="width:100%">
-    ${getTHead(data[0])}
-    ${data.map(el => getTableRow(el)).join('')}
-</table>
-`;
+
+function getThead(data){
+    return Object.keys(data).map(key => getTagTH(key)).join('');
+}
+
+function getTableData(data){
+    return data.map(el => getTableRow(el)).join('');
+}
+
+function getTableRow(data){
+    return `<tr>${Object.values(data).map(key => getTagTD(key)).join('')}</tr>`;
+}
+
+function makeTable(data){
+    return `<table style="width:100%">
+        ${getThead(data[0])}
+        ${getTableData(data)}
+    </table>`;
+}
+const markup = makeTable(data);
 document.write(markup);
