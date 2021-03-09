@@ -22,7 +22,7 @@ SuperMath.prototype.input = function(){
     let sign;
     do {
         sign = prompt('Введите знак ');
-    } while (sign.length != 1 || this.signs.indexOf(sign) == -1)
+    } while (this.signs.indexOf(sign) == -1)
     this.obj.sign = sign;
 }
 
