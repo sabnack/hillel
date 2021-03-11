@@ -38,7 +38,7 @@ function getTagTD(el){
 }
 
 function getThead(data){
-    return Object.keys(data).map(key => getTagTH(key)).join('');
+    return `<tr>${Object.keys(data).map(key => getTagTH(key)).join('')}</tr>`;
 }
 
 function getTableData(data){
