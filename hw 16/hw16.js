@@ -6,5 +6,5 @@ for(let element of elements){
 function timer() {    
     let textArea = document.getElementById('text-area');
     let res = textArea.value;
-    textArea.value = res + ',' + this.value;
+    textArea.value = `${res} , ${this.value}`;
 }
