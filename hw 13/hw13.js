@@ -42,8 +42,7 @@ function getTableData(data) {
 }
 
 function getTableRow(data) {
-    let tmp = data.join('');
-    return `<tr>${tmp}</tr>`;
+    return `<tr>${data.join('')}</tr>`;
 }
 
 function makeTable(data) {
