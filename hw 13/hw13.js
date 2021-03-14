@@ -38,7 +38,7 @@ function getTagTD(el) {
 }
 
 function getTableData(data) {
-    return data.map(el => getTableRow(getObjectValues(el, getTagTD))).join('');
+    return data.map(el => getTableRow(mapData(getObjectValues(el), getTagTD))).join('');
 }
 
 function getTableRow(data) {
@@ -47,18 +47,22 @@ function getTableRow(data) {
 
 function makeTable(data) {
     return `<table style="width:100%">
-        ${getTableRow(getObjectKeys(data[0], getTagTH))}
+        ${getTableRow(mapData(getObjectKeys(data[0]), getTagTH))}
         ${getTableData(data)}
     </table>`;
 }
-
+        
 const markup = makeTable(data);
 document.write(markup);
 
-function getObjectKeys(data, func) {
-    return Object.keys(data).map(key => func(key));
+function mapData(data, func){
+    return data.map(key => func(key));
 }
 
-function getObjectValues(data, func) {
-    return Object.values(data).map(key => func(key));
+function getObjectKeys(data) {
+    return Object.keys(data);
+}
+
+function getObjectValues(data) {
+    return Object.values(data);
 }
