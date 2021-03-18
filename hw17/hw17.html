@@ -6,6 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW17</title>
+    <style type="text/css">
+        .parent {
+            display: flex;
+            flex-direction: column-reverse;
+            width: 50px;
+            border: 1px solid black;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,9 +27,9 @@
         <input type="range" name="slider" id="slider">
         <input type="number" name="number" id="number">
     </div>
-    <div id="diagramm">
-        <div></div>
-        <div></div>
+    <div id="diagramm" class="parent">
+        <div class="green"></div>
+        <div class="red"></div>
     </div>
     <script src="hw17.js"></script>
 </body>

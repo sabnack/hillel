@@ -1,35 +1,44 @@
 let inputRange = document.querySelector('#slider');
 let inputNumber = document.querySelector('#number');
 let diagramm = document.querySelector('#diagramm');
+let green = document.querySelector('.green');
+let red = document.querySelector('.red');
 const max = +prompt('Введите максимальное значение', 100);
 inputRange.max = max;
 inputNumber.value = inputRange.value;
-inputRange.addEventListener('input', updateInput);
-inputNumber.addEventListener('input', updateInput);
-initDivs(diagramm);
 
-function initDivs(diagramm) {
-    diagramm.style.display = 'flex';
-    diagramm.style.flexDirection = 'column-reverse';
-    diagramm.style.width = '50px';
-    diagramm.style.height = `${inputRange.max * 1.08}px`;
-    diagramm.style.border = '1px solid black';
-    diagramm.firstElementChild.style.backgroundColor = 'green';
-    diagramm.firstElementChild.style.height = `${inputRange.value}px`;
-    diagramm.lastElementChild.style.backgroundColor = 'red';
-    diagramm.lastElementChild.style.height = `${getCommission(inputRange.value)}px`;
+
+inputRange.oninput = () => {
+    inputNumber.value = inputRange.value;
+    updateDivs(inputRange.value);
+}
+inputNumber.oninput = () => {
+    inputRange.value = inputNumber.value;
+    updateDivs(inputNumber.value);
 }
 
-function updateInput() {
-    let sibling = this.nextElementSibling == null ? this.previousElementSibling : this.nextElementSibling;
-    sibling.value = this.value;
-    updateDivs(this.value);
+const memoizedCommission = memoize(getCommission);
+
+diagramm.style.height = `${inputRange.max * 1.08}px`;
+green.style.height = `${inputRange.value}px`;
+red.style.height = `${memoizedCommission(inputRange.value)}px`;
+
+function memoize(fn) {
+    let cache = {};
+    return (...args) => {
+        let n = args[0];
+        if (n in cache) {
+            console.log('Fetching from cache', n);
+            return cache[n];
+        } else {
+            console.log('Calculating result');
+            let result = fn(n);
+            cache[n] = result;
+            return result;
+        }
+    }
 }
 
-function updateDivs(value) {
-    diagramm.firstElementChild.style.height = `${value}px`;
-    diagramm.lastElementChild.style.height = `${getCommission(inputRange.value)}px`;
-}
 function getCommission(value) {
     if (value <= max * 0.2) {
         return value * 0.02;
@@ -40,4 +49,9 @@ function getCommission(value) {
     } else {
         return value * 0.08;
     }
+}
+
+function updateDivs(value) {
+    green.style.height = `${value}px`;
+    red.style.height = `${memoizedCommission(value)}px`;
 }
