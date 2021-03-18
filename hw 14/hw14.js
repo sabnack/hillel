@@ -4,15 +4,15 @@
 // метод input() класса SuperMath. Пример обекта: obj = { X:12, Y:3, znak: “/”}, возможные варианты znak=> + - / * %. 
 // При вводе znak нужно сделать проверку корректности ввода на возможные математические действия
 // p = new SuperMath(); p.check(obj); // --> no p.input() -> 3 prompt -> считает
-this.obj = {
+const obj = {
     X: 12,
     Y: 3,
     sign: "/"
 }
 class SuperMath {
+    obj = {}
     constructor() {
-        this.signs = ['+', '-', '/', '*', '%'];
-        this.obj = {}
+        this.signs = ['+', '-', '/', '*', '%'];        
     }
 }
 
