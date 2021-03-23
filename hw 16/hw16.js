@@ -5,8 +5,7 @@ setInterval(timer.bind(elements), 2000);
 function timer() {
     for (let element of this) {
         if (element.value) {
-            textArea.value? textArea.value += ',' : '';
-            textArea.value += element.value;
+            textArea.value? textArea.value += `,${element.value}`: textArea.value += element.value;
         }
     }
 }
