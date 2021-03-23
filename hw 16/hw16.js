@@ -1,10 +1,12 @@
 const elements = document.querySelectorAll('input');
-for(let element of elements){
-    setInterval(timer.bind(element), 2000);
-}
+const textArea = document.getElementById('text-area');
+setInterval(timer.bind(elements), 2000);
 
-function timer() {    
-    let textArea = document.getElementById('text-area');
-    let res = textArea.value;
-    textArea.value = `${res} , ${this.value}`;
+function timer() {
+    for (let element of this) {
+        if (element.value) {
+            textArea.value? textArea.value += ',' : '';
+            textArea.value += element.value;
+        }
+    }
 }
