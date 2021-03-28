@@ -109,6 +109,12 @@ window.onload = function () {
         showMenuOff(e.target);
     });
 
+    document.addEventListener("keyup", function (e) {
+        if (e.keyCode === 27) {
+            showMenuOff(e.target);
+        }
+    });
+    
     function showMenuOn() {
         if (contextMenu) {
             contextMenu.classList.remove("hide");
