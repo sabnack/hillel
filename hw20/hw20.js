@@ -1,15 +1,29 @@
+// Создать контекстное меню при клике(event=contextmenu) на любое место в документе. Использую модель данных ниже(data):
+
+//  data = { 
+//  	name: 'menu', 
+//  	items: [
+//  		{
+//  			title: 'title 1',
+//  			handler: 'ActionCopy'
+//  		},
+//  		{
+//  			title: 'title 2',
+//  			handler: 'ActionSaveAs'
+//  		},
+//  		{
+//  			title: 'title 3',
+//  			handler: 'ActionExit' // названия метода из actions,
+//  		}
+//  	]
+//  }
+// Меотоды обработчиков событий хранить в объекте actions.
+
+// Кликая(onclick) по пунктам меню(задание #1), вызываются метод из объекта actions (использовать своство handler) .
+
+// actions = { actionCopy: function(){}, actionSaveAs: function(){}, actionExit: function() {} }
+
 window.onload = function () {
-    document.addEventListener("contextmenu", function (e) {
-        const { clientX, clientY } = e;
-        event.preventDefault();
-        setPosition(clientX, clientY);
-        showMenuOn();
-    });
-
-    document.addEventListener("click", function (e) {
-        showMenuOff(e.target);
-    });
-
     const actions = {
         actionCopy() {
             console.log('ActionCopy')
@@ -30,8 +44,6 @@ window.onload = function () {
             { title: 'Exit', handler: 'actionExit' }
         ]
     }
-
-
 
     function MenuComponent(model = {}, actions = {}) {
         this.model = model;
@@ -62,7 +74,7 @@ window.onload = function () {
 
             li.addEventListener('click', actions[handler]);
             li.addEventListener('mouseover', highlightMenuItemToggle);
-            li.addEventListener('mouseleave', highlightMenuItemToggle);
+            li.addEventListener('mouseout', highlightMenuItemToggle);
             li.classList.add("navigation__item");
             li.innerHTML = title;
 
@@ -86,19 +98,34 @@ window.onload = function () {
     menu.makeMenu();
     const contextMenu = document.querySelector('#context_menu');
 
+    document.addEventListener("contextmenu", function (e) {
+        const { clientX, clientY } = e;
+        event.preventDefault();
+        setPosition(clientX, clientY);
+        showMenuOn();
+    });
+
+    document.addEventListener("click", function (e) {
+        showMenuOff(e.target);
+    });
+
     function showMenuOn() {
-        contextMenu.classList.remove("hide");
+        if (contextMenu) {
+            contextMenu.classList.remove("hide");
+        }
     }
 
     function showMenuOff(target) {
-        if (target != contextMenu) {
+        if (contextMenu && target != contextMenu) {
             contextMenu.classList.add("hide");
         }
     }
 
     function setPosition(clientX, clientY) {
-        contextMenu.style.left = `${clientX}px`;
-        contextMenu.style.top = `${clientY}px`;
+        if (contextMenu) {
+            contextMenu.style.left = `${clientX}px`;
+            contextMenu.style.top = `${clientY}px`;
+        }
     }
 
     function highlightMenuItemToggle() {
