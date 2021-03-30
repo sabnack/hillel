@@ -73,11 +73,8 @@ window.onload = function () {
             const { handler, title } = items[i];
 
             li.addEventListener('click', actions[handler]);
-            li.addEventListener('mouseover', highlightMenuItemToggle);
-            li.addEventListener('mouseout', highlightMenuItemToggle);
             li.classList.add("navigation__item");
             li.innerHTML = title;
-
             fragment.append(li);
         }
 
@@ -132,9 +129,5 @@ window.onload = function () {
             contextMenu.style.left = `${clientX}px`;
             contextMenu.style.top = `${clientY}px`;
         }
-    }
-
-    function highlightMenuItemToggle() {
-        this.classList.toggle("highlight");
     }
 }
