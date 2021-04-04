@@ -52,10 +52,10 @@ window.onload = function () {
     }
 
     MenuComponent.prototype.makeNavContainer = function () {
-        const nav = document.createElement('div');
-        nav.setAttribute("id", "context_menu");
-        nav.classList.add('menu_block', 'position', 'hide');
-        return nav;
+        const div = document.createElement('div');
+        div.setAttribute("id", "context_menu");
+        div.classList.add('menu_block', 'position', 'hide');
+        return div;
     };
 
     MenuComponent.prototype.makeUlContainer = function () {
