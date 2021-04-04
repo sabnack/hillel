@@ -48,6 +48,7 @@ window.onload = function () {
     function MenuComponent(model = {}, actions = {}) {
         this.model = model;
         this.actions = actions;
+        this.contextMenu = {};
     }
 
     MenuComponent.prototype.makeNavContainer = function () {
@@ -81,52 +82,22 @@ window.onload = function () {
         return fragment;
     };
 
-
-    MenuComponent.prototype.makeMenu = function () {
-        const navContainer = this.makeNavContainer();
-        const ulContainer = this.makeUlContainer();
-        const menuButtons = this.makeButtons();
-        ulContainer.append(menuButtons);
-        navContainer.append(ulContainer);
-        document.body.append(navContainer);
-    }
-
-    const menu = new MenuComponent(data, actions);
-    menu.makeMenu();
-    const contextMenu = document.querySelector('#context_menu');
-
-    document.addEventListener("contextmenu", function (e) {
+    MenuComponent.prototype.openMenu = function (e) {
         const { clientX, clientY } = e;
         event.preventDefault();
-        setPosition(clientX, clientY);
-        showMenuOn();
-    });
+        this.setPosition(clientX, clientY);
+        this.showMenuOn();
+    }
 
-    document.addEventListener("click", function (e) {
-        showMenuOff(e.target);
-    });
-
-    document.addEventListener("keyup", function (e) {
-        if (e.keyCode === 27) {
-            showMenuOff(e.target);
-        }
-    });
-
-    function showMenuOn() {
-        if (contextMenu) {
-            contextMenu.classList.remove("hide");
+    MenuComponent.prototype.showMenuOn = function () {
+        if (this.contextMenu) {
+            this.contextMenu.classList.remove("hide");
         }
     }
 
-    function showMenuOff(target) {
-        if (contextMenu && target != contextMenu) {
-            contextMenu.classList.add("hide");
-        }
-    }
-
-    function setPosition(clientX, clientY) {
-        let width = contextMenu.clientWidth;
-        let heigth = contextMenu.clientHeight;
+    MenuComponent.prototype.setPosition = function (clientX, clientY) {
+        let width =  this.contextMenu.clientWidth;
+        let heigth =  this.contextMenu.clientHeight;
         let offSetX = window.innerWidth - width;
         let offsetY = window.innerHeight - heigth;
 
@@ -138,9 +109,39 @@ window.onload = function () {
             clientY = offsetY;
         }
 
-        if (contextMenu) {
-            contextMenu.style.left = `${clientX}px`;
-            contextMenu.style.top = `${clientY}px`;
+        if ( this.contextMenu) {
+            this.contextMenu.style.left = `${clientX}px`;
+            this.contextMenu.style.top = `${clientY}px`;
         }
     }
+
+    MenuComponent.prototype.showMenuOff = function (target) {
+        if (this.contextMenu && target != this.contextMenu) {
+            this.contextMenu.classList.add("hide");
+        }
+    }
+
+    MenuComponent.prototype.makeMenu = function () {
+        const navContainer = this.makeNavContainer();
+        const ulContainer = this.makeUlContainer();
+        const menuButtons = this.makeButtons();
+        ulContainer.append(menuButtons);
+        navContainer.append(ulContainer);
+
+        document.addEventListener("contextmenu", this.openMenu.bind(this));
+
+        document.addEventListener("click", this.showMenuOff.bind(this));
+
+        document.addEventListener("keyup", function (e) {
+            if (e.keyCode === 27) {
+                this.showMenuOff(e.target);
+            }
+        });
+
+        document.body.append(navContainer);
+        this.contextMenu = document.querySelector('#context_menu');
+    }
+
+    const menu = new MenuComponent(data, actions);
+    menu.makeMenu();
 }
