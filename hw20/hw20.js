@@ -51,7 +51,7 @@ window.onload = function () {
     }
 
     MenuComponent.prototype.makeNavContainer = function () {
-        const nav = document.createElement('nav');
+        const nav = document.createElement('div');
         nav.setAttribute("id", "context_menu");
         nav.classList.add('menu_block', 'position', 'hide');
         return nav;
@@ -111,7 +111,7 @@ window.onload = function () {
             showMenuOff(e.target);
         }
     });
-    
+
     function showMenuOn() {
         if (contextMenu) {
             contextMenu.classList.remove("hide");
@@ -125,6 +125,19 @@ window.onload = function () {
     }
 
     function setPosition(clientX, clientY) {
+        let width = contextMenu.clientWidth;
+        let heigth = contextMenu.clientHeight;
+        let offSetX = window.innerWidth - width;
+        let offsetY = window.innerHeight - heigth;
+
+        if (clientX > offSetX) {
+            clientX = offSetX;
+        }
+
+        if (clientY > offsetY) {
+            clientY = offsetY;
+        }
+
         if (contextMenu) {
             contextMenu.style.left = `${clientX}px`;
             contextMenu.style.top = `${clientY}px`;
