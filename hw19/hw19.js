@@ -19,8 +19,9 @@ function click() {
     const target = event.target;
     if (target.tagName === 'BUTTON') {
         clickBtnControl(target);
-    } else if (target.tagName != 'TD' || (target.tagName == 'TD' && target.children.length != 0)) return;
-    createInput(target);
+    } else if (target.tagName == 'TD' && target.children.length == 0) {
+        createInput(target);
+    }
 }
 
 function createInput(target) {
