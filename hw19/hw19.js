@@ -4,34 +4,40 @@
 //данные, cancel -- оставит все без изменений как было раньше.
 const table = document.querySelector('#table');
 const actions = {
-    save(target) {
-        let textArea = target.querySelector('textarea');
-        target.innerHTML = textArea.value;
+    save(parent) {
+        let textArea = parent.querySelector('textarea');
+        parent.innerHTML = textArea.value;
     },
-    cancel(target) {
-        let textArea = target.querySelector('textarea');
-        target.innerHTML = textArea.dataset.oldval;
+    cancel(parent) {
+        let textArea = parent.querySelector('textarea');
+        parent.innerHTML = textArea.dataset.oldval;
     }
 }
-table.addEventListener('click', createInput);
+table.addEventListener('click', click);
 
-function createInput() {
+function click() {
     const target = event.target;
-    if (target.tagName != 'TD' || (target.tagName == 'TD' && target.children.length != 0)) return;
+    if (target.tagName === 'BUTTON') {
+        clickBtnControl(target);
+    } else if (target.tagName != 'TD' || (target.tagName == 'TD' && target.children.length != 0)) return;
+    createInput(target);
+}
+
+function createInput(target) {
     let fragment = createFragment(target);
     target.innerHTML = null;
     target.append(fragment);
 }
 
-function click(target) {
-    const action = this.dataset.action;
-    actions[action] && actions[action](target);
+function clickBtnControl(target) {
+    const action = target.dataset.action;
+    actions[action] && actions[action](target.parentElement);
 }
 
-function createFragment(target){
+function createFragment(target) {
     let fragment = document.createDocumentFragment();
     let textArea = createTextArea(target.innerHTML);
-    var btns = Object.keys(actions).map(key => createBtn(key, target));
+    var btns = Object.keys(actions).map(key => createBtn(key));
     fragment.append(textArea);
     btns.forEach(btn => fragment.append(btn));
     return fragment;
@@ -44,10 +50,9 @@ function createTextArea(value) {
     return textArea;
 }
 
-function createBtn(action, target) {
+function createBtn(action) {
     let btn = document.createElement('button');
     btn.setAttribute(`data-action`, action);
     btn.innerHTML = action;
-    btn.onclick = click.bind(btn, target);
     return btn;
 }
