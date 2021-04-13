@@ -1,0 +1,22 @@
+.form {
+    position: fixed;
+    width: 50%;
+    border: 1px solid blue;
+    padding: 10px;
+
+    transition: all 1s ease-in;
+}
+
+.form.center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.red{
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+

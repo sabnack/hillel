@@ -1,0 +1,16 @@
+[
+    {
+        "productID" : "KL2432",
+        "productName" : "Gucci men’s suit",
+        "productPrice" :  2500, 
+        "productPriceFormatted" : "DKK 2.500,00",
+        "inStock" : true
+    },
+    {
+        "productID" : "KL2433",
+        "productName" : "Gucci women’s suit",
+        "productPrice" :  2600, 
+        "productPriceFormatted" : "DKK 2.600,00",
+        "inStock" : true
+    }
+]
