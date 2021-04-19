@@ -5,7 +5,7 @@ window.onload = () => {
         return Math.round(Math.random() * (max - min) + min);
     }
 
-    const promise = new Promise((resolve, reject) => {     
+    const promise = new Promise((resolve, reject) => {
         const i = random(1, 2);
         console.log('0');
 
@@ -31,11 +31,11 @@ window.onload = () => {
             throw Error(i);
         })
         .catch((error) => {
-                console.log('6');            
-                if (+error.message == 1) {
-                    throw Error();
-                }                
-            })
+            console.log('6');
+            if (+error.message == 1) {
+                throw Error();
+            }
+        })
         .then(() => {
             console.log('7');
         },
@@ -47,6 +47,6 @@ window.onload = () => {
             throw Error('error');
         })
         .catch(() => {
-                console.log('12');
-            });
+            console.log('12');
+        });
 };
