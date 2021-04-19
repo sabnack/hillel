@@ -33,7 +33,7 @@ window.onload = () => {
         .catch((error) => {
                 console.log('6');            
                 if (+error.message == 1) {
-                    return i;
+                    throw Error();
                 }                
             })
         .then(() => {
@@ -45,10 +45,7 @@ window.onload = () => {
         .then(() => {
             console.log('9');
             throw Error('error');
-        },
-            () => {
-                console.log('10');
-            })
+        })
         .catch(() => {
                 console.log('12');
             });
