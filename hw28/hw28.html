@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <script src="hw28.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .flexBox {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="TaskManager">
+        <div class="flexBox">
+            <ul>
+                <button type="button" :disabled="firstList.length == 0" @click="transfer(true)">Transfer</button>
+                <todo-item v-for="item in firstList" v-bind:todo="item"></todo-item>
+            </ul>
+            <ul>
+                <button type="button" :disabled="secondList.length == 0" @click="transfer(false)">Transfer</button>
+                <todo-item v-for="item in secondList" v-bind:todo="item"></todo-item>
+            </ul>
+        </div>
+    </div>
+
+    <template id="list">
+        <li>{{ todo }}</li>
+    </template>
+</body>
+
+</html>
