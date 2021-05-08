@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW17</title>
+    <style type="text/css">
+        input {
+            width: 80px;
+        }
+
+        .parent {
+            display: flex;
+            flex-direction: column-reverse;
+            width: 80px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="hw29.js"></script>
+</head>
+
+<body>
+    <div id='diagrams'>
+        <div class="row">
+            <diagram-item v-for="(height, index) in items" v-model:height="items[index].height"
+                :color="items[index].color" :id="items[index].id">
+                </todo-item>
+        </div>
+        <button @click="sort">Sort</button>
+    </div>
+
+    <template id="column">
+        <div>
+            <div class="parent">
+                <div :style="{height:height+'px', backgroundColor:color}">{{ id }}</div>
+            </div>
+            <input type="range" min=100 max=300 name="slider" :value="height" @input="change" id="slider">
+        </div>
+    </template>
+</body>
+</html>
